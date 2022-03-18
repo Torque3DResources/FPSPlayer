@@ -1,0 +1,5 @@
+<ShapeAsset
+    AssetName="FP_SoldierArms"
+    fileName="@assetFile=FP_SoldierArms.DAE"
+    constuctorFileName="@assetFile=FP_SoldierArms.tscript"
+    materialSlot0="@asset=FPSPlayer:base_FP_Soldier_Arms_Main"/>
