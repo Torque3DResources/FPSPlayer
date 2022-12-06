@@ -20,49 +20,66 @@
 // IN THE SOFTWARE.
 //-----------------------------------------------------------------------------
 
-if ( !isObject( moveMap ) )
-    new ActionMap(moveMap);
+if ( !isObject( playerKeyMap ) )
+{
+    new ActionMap(playerKeyMap)
+    {
+      humanReadableName = "Player";  
+    };
+}
+
+//------------------------------------------------------------------------------
+// Set up remappable entries
+//------------------------------------------------------------------------------
+addKeyRemap("Forward", "playerKeyMap", "keyboard", "moveForward", "Forward Movement");
+addKeyRemap("Backward", "playerKeyMap", "keyboard", "movebackward", "Backward Movement");
+addKeyRemap("Strafe Left", "playerKeyMap", "keyboard", "moveleft", "Left Strafing Movement");
+addKeyRemap("Strafe Right", "playerKeyMap", "keyboard", "moveright", "Right Strafing Movement");
+addKeyRemap("Ascend", "playerKeyMap", "keyboard", "moveup", "Makes the camera ascend");
+addKeyRemap("Descend", "playerKeyMap", "keyboard", "movedown", "Makes the camera descend");
+addKeyRemap("Jump", "playerKeyMap", "keyboard", "jump", "Jump");
+addKeyRemap("Sprint", "playerKeyMap", "keyboard", "doSprint", "Sprint");
 
 //------------------------------------------------------------------------------
 // Movement Keys
 //------------------------------------------------------------------------------
-moveMap.bind( keyboard, a, moveleft );
-moveMap.bind( keyboard, d, moveright );
-moveMap.bind( keyboard, left, moveleft );
-moveMap.bind( keyboard, right, moveright );
+playerKeyMap.bind( keyboard, a, moveleft );
+playerKeyMap.bind( keyboard, d, moveright );
+playerKeyMap.bind( keyboard, left, moveleft );
+playerKeyMap.bind( keyboard, right, moveright );
 
-moveMap.bind( keyboard, w, moveforward );
-moveMap.bind( keyboard, s, movebackward );
-moveMap.bind( keyboard, up, moveforward );
-moveMap.bind( keyboard, down, movebackward );
+playerKeyMap.bind( keyboard, w, moveforward );
+playerKeyMap.bind( keyboard, s, movebackward );
+playerKeyMap.bind( keyboard, up, moveforward );
+playerKeyMap.bind( keyboard, down, movebackward );
 
-moveMap.bind( keyboard, e, moveup );
-moveMap.bind( keyboard, c, movedown );
+playerKeyMap.bind( keyboard, e, moveup );
+playerKeyMap.bind( keyboard, c, movedown );
 
-moveMap.bind( keyboard, space, jump );
-moveMap.bind( mouse, xaxis, yaw );
-moveMap.bind( mouse, yaxis, pitch );
+playerKeyMap.bind( keyboard, space, jump );
+playerKeyMap.bind( mouse, xaxis, yaw );
+playerKeyMap.bind( mouse, yaxis, pitch );
 
-moveMap.bind( gamepad, thumbrx, "D", "-0.23 0.23", gamepadYaw );
-moveMap.bind( gamepad, thumbry, "D", "-0.23 0.23", gamepadPitch );
-moveMap.bind( gamepad, thumblx, "D", "-0.23 0.23", gamePadMoveX );
-moveMap.bind( gamepad, thumbly, "D", "-0.23 0.23", gamePadMoveY );
+playerKeyMap.bind( gamepad, thumbrx, "D", "-0.23 0.23", gamepadYaw );
+playerKeyMap.bind( gamepad, thumbry, "D", "-0.23 0.23", gamepadPitch );
+playerKeyMap.bind( gamepad, thumblx, "D", "-0.23 0.23", gamePadMoveX );
+playerKeyMap.bind( gamepad, thumbly, "D", "-0.23 0.23", gamePadMoveY );
 
-moveMap.bind( gamepad, btn_a, jump );
-moveMap.bindCmd( gamepad, btn_back, "disconnect();", "" );
+playerKeyMap.bind( gamepad, btn_a, jump );
+playerKeyMap.bindCmd( gamepad, btn_back, "disconnect();", "" );
 
-moveMap.bindCmd(gamepad, dpadl, "toggleLightColorViz();", "");
-moveMap.bindCmd(gamepad, dpadu, "toggleDepthViz();", "");
-moveMap.bindCmd(gamepad, dpadd, "toggleNormalsViz();", "");
-moveMap.bindCmd(gamepad, dpadr, "toggleLightSpecularViz();", "");
+playerKeyMap.bindCmd(gamepad, dpadl, "toggleLightColorViz();", "");
+playerKeyMap.bindCmd(gamepad, dpadu, "toggleDepthViz();", "");
+playerKeyMap.bindCmd(gamepad, dpadd, "toggleNormalsViz();", "");
+playerKeyMap.bindCmd(gamepad, dpadr, "toggleLightSpecularViz();", "");
 
 // ----------------------------------------------------------------------------
 // Stance/pose
 // ----------------------------------------------------------------------------
-moveMap.bind(keyboard, lcontrol, doCrouch);
-moveMap.bind(gamepad, btn_b, doCrouch);
+playerKeyMap.bind(keyboard, lcontrol, doCrouch);
+playerKeyMap.bind(gamepad, btn_b, doCrouch);
 
-moveMap.bind(keyboard, lshift, doSprint);
+playerKeyMap.bind(keyboard, lshift, doSprint);
 
 // ----------------------------------------------------------------------------
 // Misc. Player stuff
@@ -73,10 +90,9 @@ moveMap.bind(keyboard, lshift, doSprint);
 // who will want to use a player model that has these animations and wishes to
 // use them.
 
-//moveMap.bindCmd(keyboard, "ctrl w", "commandToServer('playCel',\"wave\");", "");
-//moveMap.bindCmd(keyboard, "ctrl s", "commandToServer('playCel',\"salute\");", "");
+//playerKeyMap.bindCmd(keyboard, "ctrl w", "commandToServer('playCel',\"wave\");", "");
+//playerKeyMap.bindCmd(keyboard, "ctrl s", "commandToServer('playCel',\"salute\");", "");
 
-moveMap.bindCmd(keyboard, "ctrl k", "commandToServer('suicide');", "");
+playerKeyMap.bindCmd(keyboard, "ctrl k", "commandToServer('suicide');", "");
 
-
-moveMap.push();
+playerKeyMap.push();
