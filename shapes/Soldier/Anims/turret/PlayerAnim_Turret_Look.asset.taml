@@ -2,4 +2,4 @@
     AssetName="PlayerAnim_Turret_Look"
     fileName="@assetFile=PlayerAnim_Turret_Look.dae"
     constuctorFileName="@assetFile=PlayerAnim_Turret_Look.tscript"
-    materialSlot0="@asset=FPSEquipment:ShapeBounds"/>
+    materialSlot0="@asset=FPSPlayer:ShapeBounds"/>
