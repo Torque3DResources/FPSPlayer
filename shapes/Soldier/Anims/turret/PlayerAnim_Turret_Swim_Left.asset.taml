@@ -2,4 +2,4 @@
     AssetName="PlayerAnim_Turret_Swim_Left"
     fileName="@assetFile=PlayerAnim_Turret_Swim_Left.dae"
     constuctorFileName="@assetFile=PlayerAnim_Turret_Swim_Left.tscript"
-    materialSlot0="@asset=FPSEquipment:ShapeBounds"/>
+    materialSlot0="@asset=FPSPlayer:ShapeBounds"/>

@@ -2,4 +2,4 @@
     AssetName="PlayerAnim_ProxMine_Crouch_Side"
     fileName="@assetFile=PlayerAnim_ProxMine_Crouch_Side.dae"
     constuctorFileName="@assetFile=PlayerAnim_ProxMine_Crouch_Side.tscript"
-    materialSlot0="@asset=FPSEquipment:ShapeBounds"/>
+    materialSlot0="@asset=FPSPlayer:ShapeBounds"/>

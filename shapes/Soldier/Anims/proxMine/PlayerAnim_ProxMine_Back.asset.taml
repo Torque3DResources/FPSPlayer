@@ -2,4 +2,4 @@
     AssetName="PlayerAnim_ProxMine_Back"
     fileName="@assetFile=PlayerAnim_ProxMine_Back.dae"
     constuctorFileName="@assetFile=PlayerAnim_ProxMine_Back.tscript"
-    materialSlot0="@asset=FPSEquipment:ShapeBounds"/>
+    materialSlot0="@asset=FPSPlayer:ShapeBounds"/>

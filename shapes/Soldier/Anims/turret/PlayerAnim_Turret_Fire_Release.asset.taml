@@ -2,4 +2,4 @@
     AssetName="PlayerAnim_Turret_Fire_Release"
     fileName="@assetFile=PlayerAnim_Turret_Fire_Release.dae"
     constuctorFileName="@assetFile=PlayerAnim_Turret_Fire_Release.tscript"
-    materialSlot0="@asset=FPSEquipment:ShapeBounds"/>
+    materialSlot0="@asset=FPSPlayer:ShapeBounds"/>
