@@ -1,0 +1,18 @@
+
+singleton TSShapeConstructor(PlayerAnim_Rifle_ReloadDAE)
+{
+   baseShapeAsset = "FPSPlayer:PlayerAnim_Rifle_Reload";
+   singleDetailSize = "0";
+   neverImportMat = "DefaultMaterial	ColorEffect*";
+   flipUVCoords = "0";
+   JoinIdenticalVerts = "0";
+   reverseWindingOrder = "0";
+   removeRedundantMats = "0";
+   animFPS = "2";
+};
+
+function PlayerAnim_Rifle_ReloadDAE::onLoad(%this)
+{
+   %this.setSequenceCyclic("ambient", "false");
+   %this.addSequence("ambient", "Reload", "1880", "1970");
+}

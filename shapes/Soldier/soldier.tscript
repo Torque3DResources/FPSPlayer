@@ -48,7 +48,7 @@ function SoldierDAE::onLoad(%this)
    %this.addSequence("FPSPlayer:PlayerAnim_Rifle_Jump Jump", "Jump", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Rifle_Land Land", "Land", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Rifle_Look Look", "Look", "0", "-1", "1", "0");
-   %this.addSequence("./Anims/PlayerAnim_Rifle_Reload.dae Reload", "Reload", "0", "-1", "1", "0");
+   %this.addSequence("FPSPlayer:PlayerAnim_Rifle_Reload Reload", "Reload", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Rifle_Root Root", "Root", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Rifle_Run Run", "Run", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Rifle_Side Side", "Side", "0", "-1", "1", "0");
@@ -83,7 +83,7 @@ function SoldierDAE::onLoad(%this)
    %this.addSequence("FPSPlayer:PlayerAnim_Pistol_Jump Jump", "Pistol_Jump", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Pistol_Land Land", "Pistol_Land", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Pistol_Look Look", "Pistol_Look", "0", "-1", "1", "0");
-   %this.addSequence("data/FPSPlayer/art/shapes/weapons/Ryder/PlayerAnims/PlayerAnim_Pistol_Reload.dae Reload", "Pistol_Reload", "0", "-1", "1", "0");
+   %this.addSequence("FPSPlayer:PlayerAnim_Pistol_Reload Reload", "Pistol_Reload", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Pistol_Root Root", "Pistol_Root", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Pistol_Run Run", "Pistol_Run", "0", "-1", "1", "0");
    %this.addSequence("FPSPlayer:PlayerAnim_Pistol_Side Side", "Pistol_Side", "0", "-1", "1", "0");

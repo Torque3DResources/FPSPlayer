@@ -1,0 +1,5 @@
+<ShapeAsset
+    AssetName="PlayerAnim_Pistol_Reload"
+    fileName="@assetFile=PlayerAnim_Pistol_Reload.dae"
+    constuctorFileName="@assetFile=PlayerAnim_Pistol_Reload.tscript"
+    materialSlot0="@asset=FPSPlayer:ShapeBounds"/>
