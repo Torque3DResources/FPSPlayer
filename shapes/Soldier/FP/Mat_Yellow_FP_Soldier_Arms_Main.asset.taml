@@ -7,13 +7,15 @@
         mapTo="Yellow_FP_Soldier_Arms_Main"
         translucentBlendOp="None"
         inheritFrom=" Mat_FP_Soldier_Arms_Main"
+        originalAssetName="Mat_Yellow_FP_Soldier_Arms_Main"
         specular0="0.9 0.9 0.9 1"
         specularMap0="data/FPSPlayer/art/shapes/actors/Soldier/FP/FP_SoldierArms_S.dds"
         specularPower0="10">
         <Material.Stages>
             <Stages_beginarray
                 DiffuseMapAsset="FPSPlayer:Soldier_FPSarms_Yellow_Dif_image"
-                NormalMapAsset="FPSPlayer:FP_SoldierArms_N_image"/>
+                NormalMapAsset="FPSPlayer:FP_SoldierArms_N_image"
+                ORMConfigMapAsset="FPSPlayer:Soldier_FPSarms_ORM_image"/>
         </Material.Stages>
     </Material>
 </MaterialAsset>
