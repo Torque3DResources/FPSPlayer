@@ -14,7 +14,8 @@
         <Material.Stages>
             <Stages_beginarray
                 DiffuseMapAsset="FPSPlayer:Soldier_Dif_image"
-                NormalMapAsset="FPSPlayer:Soldier_N_image"/>
+                NormalMapAsset="FPSPlayer:Soldier_N_image"
+                ORMConfigMapAsset="FPSPlayer:Soldier_ORM_image"/>
         </Material.Stages>
     </Material>
 </MaterialAsset>

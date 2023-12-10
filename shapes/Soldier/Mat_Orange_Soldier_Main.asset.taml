@@ -6,7 +6,7 @@
         Name="Mat_Orange_Soldier_Main"
         mapTo="Orange_Soldier_Main"
         showFootprints="false"
-        inheritFrom=" Mat_Soldier_Main"
+        inheritFrom="Mat_Soldier_Main"
         castDynamicShadows="1"
         materialTag0="Player"
         specular0="0.9 0.9 0.9 1"
@@ -15,7 +15,8 @@
         <Material.Stages>
             <Stages_beginarray
                 DiffuseMapAsset="FPSPlayer:Soldier_Orange_Dif_image"
-                NormalMapAsset="FPSPlayer:Soldier_N_image"/>
+                NormalMapAsset="FPSPlayer:Soldier_N_image"
+                ORMConfigMapAsset="FPSPlayer:Soldier_ORM_image"/>
         </Material.Stages>
     </Material>
 </MaterialAsset>
