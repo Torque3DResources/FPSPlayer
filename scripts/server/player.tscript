@@ -458,3 +458,39 @@ function Player::use(%player, %data)
 
    Parent::use(%player, %data);
 }
+
+// ----------------------------------------------------------------------------
+// Spawning
+// ----------------------------------------------------------------------------
+function FPSPlayer::onControlObjectTypePick(%this, %client)
+{
+    %client.spawnClass = "Player";
+    %client.spawnDBType = "PlayerData";
+    %client.spawnDataBlock = "DefaultPlayerData";
+    %client.completeControlObjectTypePick();
+}
+
+function FPSPlayer::onSpawnAppendPick(%this, %client)
+{
+    if (!isDefined("%client.skin"))
+    {
+        // Determine which character skins are not already in use
+        // TAB delimited list of skin names
+        %availableSkins = %client.player.getDatablock().availableSkins;
+        %count = ClientGroup.getCount();
+        for (%cl = 0; %cl < %count; %cl++)
+        {
+            %other = ClientGroup.getObject(%cl);
+            if (%other != %client)
+            {
+                %availableSkins = strreplace(%availableSkins, %other.skin, "");
+                %availableSkins = strreplace(%availableSkins, "\t\t", "");// remove empty fields
+            }
+        }
+
+        // Choose a random, unique skin for this client
+        %count = getFieldCount(%availableSkins);
+        %client.skin = addTaggedString( getField(%availableSkins, getRandom(%count)) );
+    }
+    %client.player.setSkinName(%client.skin);
+}
