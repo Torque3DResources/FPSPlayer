@@ -467,7 +467,18 @@ function FPSPlayer::setSpawnObjectType(%this, %client)
     %client.spawnClass = "Player";
     %client.spawnDBType = "PlayerData";
     %client.spawnDataBlock = "DefaultPlayerData";
-    %client.onSetSpawnObjectTypeComplete();
+    
+    %this.setSpawnObjectTypeComplete(%client);
+}
+
+function FPSPlayer::setSpawnObjectTypeComplete(%this, %client)
+{
+   %client.getEventManager().postEvent("setSpawnObjectTypeComplete", %client);
+}
+
+function FPSPlayer::setSpawnObjectTypeFailed(%this, %client)
+{
+   %client.getEventManager().postEvent("setSpawnObjectTypeFailed", %client);
 }
 
 function FPSPlayer::onPostSpawn(%this, %client)
@@ -493,4 +504,6 @@ function FPSPlayer::onPostSpawn(%this, %client)
         %client.skin = addTaggedString( getField(%availableSkins, getRandom(%count)) );
     }
     %client.player.setSkinName(%client.skin);
+    
+    %client.getEventManager().postEvent("postSpawnComplete");
 }
