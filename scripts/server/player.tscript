@@ -57,7 +57,10 @@ function PlayerData::onMount(%this, %obj, %vehicle, %node)
    if (%node == 0)
    {
       %obj.setTransform("0 0 0 0 0 1 0");
-      %obj.setActionThread(%vehicle.getDatablock().mountPose[%node], true, true);
+      if (%vehicle.getDataBlock().mountPose[%node] !$= "")
+         %obj.setActionThread(%vehicle.getDatablock().mountPose[%node], true, true);
+      else
+         %obj.setActionThread("sitting", true);
 
       %obj.lastWeapon = %obj.getMountedImage($WeaponSlot);
       %obj.unmountImage($WeaponSlot);
