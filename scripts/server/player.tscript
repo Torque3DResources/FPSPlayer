@@ -158,10 +158,10 @@ function PlayerData::onCollision(%this, %obj, %col)
       return;
 
    // Mount vehicles
-   if (%col.getType() & $TypeMasks::GameBaseObjectType)
+   if (%col.getType() & $TypeMasks::VehicleObjectType)
    {
       %db = %col.getDataBlock();
-      if ((%db.getClassName() $= "WheeledVehicleData" ) && %obj.mountVehicle && %obj.getState() $= "Move" && %col.mountable)
+      if (%obj.mountVehicle && %obj.getState() $= "Move" && %col.mountable)
       {
          // Only mount drivers for now.
          ServerConnection.setFirstPerson(0);
