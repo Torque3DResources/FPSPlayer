@@ -52,6 +52,7 @@ function PlayerData::onNewDataBlock(%this, %obj)
 
 function PlayerData::onMount(%this, %obj, %vehicle, %node)
 {
+   %obj.playthread(3, "sitting");
    // Node 0 is the pilot's position, we need to dismount his weapon.
    if (%node == 0)
    {
@@ -82,6 +83,7 @@ function PlayerData::onUnmount(%this, %obj, %vehicle, %node)
       %obj.mountImage(%obj.lastWeapon, $WeaponSlot);
       %obj.setControlObject("");
    }
+   %obj.stopThread(3);
 }
 
 function PlayerData::doDismount(%this, %obj, %forced)
