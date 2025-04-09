@@ -52,7 +52,6 @@ function PlayerData::onNewDataBlock(%this, %obj)
 
 function PlayerData::onMount(%this, %obj, %vehicle, %node)
 {
-   %obj.playthread(3, "sitting");
    // Node 0 is the pilot's position, we need to dismount his weapon.
    if (%node == 0)
    {
@@ -68,7 +67,16 @@ function PlayerData::onMount(%this, %obj, %vehicle, %node)
       %obj.setControlObject(%vehicle);
       
       if(%obj.getClassName() $= "Player")
-         commandToClient(%obj.client, 'toggleVehicleMap', true);
+      {
+         if (%vehicle.isMemberOfClass("FlyingVehicle"))
+         {
+            commandToClient(%obj.client, 'toggleFlightMap', true);
+         }
+         else
+         {         
+            commandToClient(%obj.client, 'toggleVehicleMap', true);
+         }
+      }
    }
    else
    {
@@ -84,9 +92,18 @@ function PlayerData::onUnmount(%this, %obj, %vehicle, %node)
    if (%node == 0)
    {
       %obj.mountImage(%obj.lastWeapon, $WeaponSlot);
-      %obj.setControlObject("");
    }
-   %obj.stopThread(3);
+   
+   if (%vehicle.isMemberOfClass("FlyingVehicle"))
+   {
+      commandToClient(%obj.client, 'toggleFlightMap', false);
+   }
+   else
+   {         
+      commandToClient(%obj.client, 'toggleVehicleMap', false);
+   }
+         
+   %obj.setControlObject("");
 }
 
 function PlayerData::doDismount(%this, %obj, %forced)
@@ -166,7 +183,7 @@ function PlayerData::onCollision(%this, %obj, %col)
    if (%col.getType() & $TypeMasks::VehicleObjectType)
    {
       %db = %col.getDataBlock();
-      if (%obj.mountVehicle && %obj.getState() $= "Move" && %col.mountable)
+      if (%obj.mountVehicle && %obj.getState() $= "Move" && %col.mountable && %col.getDamageState() $= "Enabled")
       {
          // Only mount drivers for now.
          ServerConnection.setFirstPerson(0);
