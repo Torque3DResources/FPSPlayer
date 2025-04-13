@@ -68,14 +68,8 @@ function PlayerData::onMount(%this, %obj, %vehicle, %node)
       
       if(%obj.getClassName() $= "Player")
       {
-         if (%vehicle.isMemberOfClass("FlyingVehicle"))
-         {
-            commandToClient(%obj.client, 'toggleFlightMap', true);
-         }
-         else
-         {         
-            commandToClient(%obj.client, 'toggleVehicleMap', true);
-         }
+            %client = (%obj.client) ? %obj.client : %obj.getControllingClient();
+            commandToClient(%client, 'setMoveMap', %vehicle.getDatablock().controlMap);
       }
    }
    else
@@ -93,14 +87,10 @@ function PlayerData::onUnmount(%this, %obj, %vehicle, %node)
    {
       %obj.mountImage(%obj.lastWeapon, $WeaponSlot);
    }
-   
-   if (%vehicle.isMemberOfClass("FlyingVehicle"))
+   if(%obj.getClassName() $= "Player")
    {
-      commandToClient(%obj.client, 'toggleFlightMap', false);
-   }
-   else
-   {         
-      commandToClient(%obj.client, 'toggleVehicleMap', false);
+      %client = (%obj.client) ? %obj.client : %obj.getControllingClient();
+      commandToClient(%client, 'setMoveMap', %obj.getDatablock().controlMap);
    }
          
    %obj.setControlObject("");
