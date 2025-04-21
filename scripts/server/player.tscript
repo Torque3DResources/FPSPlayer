@@ -36,6 +36,13 @@ function PlayerData::onAdd(%this, %obj)
    // Default dynamic armor stats
    %obj.setRechargeRate(%this.rechargeRate);
    %obj.setRepairRate(0);
+   //%obj.schedule(32, "assignAI");
+}
+
+function Player::assignAI(%this)
+{
+   %this.aiController = new AIController(){ ControllerData = aiPlayerControl; };
+   %this.setAIController(%this.aiController);
 }
 
 function PlayerData::onRemove(%this, %obj)
@@ -68,14 +75,10 @@ function PlayerData::onMount(%this, %obj, %vehicle, %node)
       
       if(%obj.getClassName() $= "Player")
       {
-         if (%vehicle.isMemberOfClass("FlyingVehicle"))
-         {
-            commandToClient(%obj.client, 'toggleFlightMap', true);
-         }
-         else
-         {         
-            commandToClient(%obj.client, 'toggleVehicleMap', true);
-         }
+         %client = (%obj.client) ? %obj.client : %obj.getControllingClient();
+         commandToClient(%client, 'setMoveMap', %vehicle.getDatablock().controlMap);
+         if (%obj.aiController)
+            %obj.aiController.ControllerData = aiCarControl;
       }
    }
    else
@@ -93,14 +96,12 @@ function PlayerData::onUnmount(%this, %obj, %vehicle, %node)
    {
       %obj.mountImage(%obj.lastWeapon, $WeaponSlot);
    }
-   
-   if (%vehicle.isMemberOfClass("FlyingVehicle"))
+   if(%obj.getClassName() $= "Player")
    {
-      commandToClient(%obj.client, 'toggleFlightMap', false);
-   }
-   else
-   {         
-      commandToClient(%obj.client, 'toggleVehicleMap', false);
+      %client = (%obj.client) ? %obj.client : %obj.getControllingClient();
+      commandToClient(%client, 'setMoveMap', %obj.getDatablock().controlMap);
+      if (%obj.aiController)
+         %obj.aiController.ControllerData = aiPlayerControl;
    }
          
    %obj.setControlObject("");
