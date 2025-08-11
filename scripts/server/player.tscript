@@ -528,5 +528,5 @@ function FPSPlayer::onPostSpawn(%this, %client)
     }
     %client.player.setSkinName(%client.skin);
     
-    %client.getEventManager().postEvent("postSpawnComplete");
+    %client.getEventManager().postEvent("postSpawnComplete",%client);
 }
