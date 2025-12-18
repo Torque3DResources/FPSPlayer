@@ -40,10 +40,7 @@ function FPSPlayer::onDestroyGameServer(%this)
 function FPSPlayer::initClient(%this)
 {
    //keybind scripts   
-   %this.queueExec("./scripts/client/defaultkeybinds");   
-   %prefPath = getPrefpath();
-   if(isScriptFile(%prefPath @ "/keybinds"))
-      exec(%prefPath @ "/keybinds");
+   %this.queueExec("./scripts/client/defaultkeybinds");
 }
 
 function FPSPlayer::onCreateClientConnection(%this)
