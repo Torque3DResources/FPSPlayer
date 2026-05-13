@@ -22,7 +22,7 @@ function FPSPlayer::onDestroy( %this )
 
 function FPSPlayer::initServer(%this)
 {
-   %this.queueExec("./scripts/server/player");
+   %this.queueExec("./scripts/server/player",true);
    %this.queueExec("./scripts/server/aiPlayer");
 }
 
@@ -39,7 +39,7 @@ function FPSPlayer::onDestroyGameServer(%this)
 
 function FPSPlayer::initClient(%this)
 {
-   //keybind scripts   
+   //keybind scripts
    %this.queueExec("./scripts/client/defaultkeybinds");
 }
 
