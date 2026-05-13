@@ -72,7 +72,7 @@ function PlayerData::onMount(%this, %obj, %vehicle, %node)
       %obj.unmountImage($WeaponSlot);
 
       %obj.setControlObject(%vehicle);
-      
+
       if(%obj.getClassName() $= "Player")
       {
          %client = (%obj.client) ? %obj.client : %obj.getControllingClient();
@@ -103,7 +103,7 @@ function PlayerData::onUnmount(%this, %obj, %vehicle, %node)
       if (%obj.aiController)
          %obj.aiController.ControllerData = aiPlayerControl;
    }
-         
+
    %obj.setControlObject("");
 }
 
@@ -188,13 +188,13 @@ function PlayerData::onCollision(%this, %obj, %col)
       {
          // Only mount drivers for now.
          ServerConnection.setFirstPerson(0);
-         
+
          // For this specific example, only one person can fit
          // into a vehicle
-         %mount = %col.getMountNodeObject(0);         
+         %mount = %col.getMountNodeObject(0);
          if(%mount)
             return;
-         
+
          // For this specific FPS Example, always mount the player
          // to node 0
          %node = 0;
@@ -216,9 +216,36 @@ function PlayerData::damage(%this, %obj, %sourceObject, %position, %damage, %dam
    if (!isObject(%obj) || %obj.getState() $= "Dead" || !%damage)
       return;
 
-   %obj.applyDamage(%damage);
+   // Determine damage location
+   if (%damageType !$= "Suicide") {
+      %getDamageLoc = %obj.getDamageLocation(%position);
+      %damageLoc = firstWord(%getDamageLoc);
+      %subDamageLoc = getWord(%getDamageLoc, 1);
 
-   %location = "Body";
+      switch$(%damageLoc) {
+         case "Head": %damage *= 3;
+         case "Torso": %damage *= 1;
+         case "Legs": %damage *= 0.9;
+      }
+
+      if (%damageLoc $= "Torso") {
+         switch$(subDamageLoc) {
+            case "middle_middle": %damage *= 1.4;   // "Middle middle" sounds confusing but it is the case that occurs when shot in the back when prone
+            case "middle_left": %damage *= 0.6;
+            case "middle_right": %damage *= 0.6;
+            case "back_middle": %damage *= 1.4;
+            case "back_left": %damage *= 0.9;
+            case "back_right": %damage *= 0.9;
+            case "front_middle": %damage *= 1;
+            case "front_left": %damage *= 0.9;
+            case "front_right": %damage *= 0.9;
+         }
+      }
+   }
+
+   // apply damage after any modifiers
+   %obj.applyDamage(%damage);
+   %this.onDamage(%obj, %damage);
 
    // Deal with client callbacks here because we don't have this
    // information in the onDamage or onDisable methods
@@ -233,7 +260,7 @@ function PlayerData::damage(%this, %obj, %sourceObject, %position, %damage, %dam
 
       if (%obj.getState() $= "Dead")
       {
-         callGamemodeFunction("onDeath", %client, %sourceObject, %sourceClient, %damageType, %location);
+         callGamemodeFunction("onDeath", %client, %sourceObject, %sourceClient, %damageType, %damageLoc);
       }
    }
 }
@@ -270,7 +297,7 @@ function PlayerData::onDisabled(%this, %obj, %state)
    if (isObject(%item))
    {
       %amount = %obj.getInventory(%item.image.ammo);
-      
+
       if (!%item.image.clip)
          warn("No clip exists to throw for item ", %item);
       if(%amount)
@@ -490,7 +517,7 @@ function FPSPlayer::setSpawnObjectType(%this, %client)
     %client.spawnClass = "Player";
     %client.spawnDBType = "PlayerData";
     %client.spawnDataBlock = "DefaultPlayerData";
-    
+
     %this.setSpawnObjectTypeComplete(%client);
 }
 
@@ -527,6 +554,6 @@ function FPSPlayer::onPostSpawn(%this, %client)
         %client.skin = addTaggedString( getField(%availableSkins, getRandom(%count)) );
     }
     %client.player.setSkinName(%client.skin);
-    
+
     %client.getEventManager().postEvent("postSpawnComplete",%client);
 }
