@@ -259,11 +259,11 @@ function PlayerData::damage(%this, %obj, %sourceObject, %position, %damage, %dam
          if (%obj.healthFromMount)
          {
             %rootObj = findRootObject(%obj);
-            %obj.setDamageDirection(%rootObj, %sourceObject, %position);
+            %rootObj.setDamageDirection(%sourceObject, %position);
          }
          else
          {
-            %obj.setDamageDirection(%obj, %sourceObject, %position);
+            %obj.setDamageDirection(%sourceObject, %position);
          }
       }
 
@@ -523,11 +523,11 @@ function Player::use(%player, %data)
 // ----------------------------------------------------------------------------
 function FPSPlayer::setSpawnObjectType(%this, %client)
 {
-    %client.spawnClass = "Player";
-    %client.spawnDBType = "PlayerData";
-    %client.spawnDataBlock = "DefaultPlayerData";
+   %client.spawnClass = "Player";
+   %client.spawnDBType = "PlayerData";
+   %client.spawnDataBlock = "DefaultPlayerData";
 
-    %this.setSpawnObjectTypeComplete(%client);
+   %this.setSpawnObjectTypeComplete(%client);
 }
 
 function FPSPlayer::setSpawnObjectTypeComplete(%this, %client)
@@ -542,27 +542,27 @@ function FPSPlayer::setSpawnObjectTypeFailed(%this, %client)
 
 function FPSPlayer::onPostSpawn(%this, %client)
 {
-    if (!isDefined("%client.skin"))
-    {
-        // Determine which character skins are not already in use
-        // TAB delimited list of skin names
-        %availableSkins = %client.player.getDatablock().availableSkins;
-        %count = ClientGroup.getCount();
-        for (%cl = 0; %cl < %count; %cl++)
-        {
-            %other = ClientGroup.getObject(%cl);
-            if (%other != %client)
-            {
-                %availableSkins = strreplace(%availableSkins, %other.skin, "");
-                %availableSkins = strreplace(%availableSkins, "\t\t", "");// remove empty fields
-            }
-        }
+   if (!isDefined("%client.skin"))
+   {
+      // Determine which character skins are not already in use
+      // TAB delimited list of skin names
+      %availableSkins = %client.player.getDatablock().availableSkins;
+      %count = ClientGroup.getCount();
+      for (%cl = 0; %cl < %count; %cl++)
+      {
+         %other = ClientGroup.getObject(%cl);
+         if (%other != %client)
+         {
+            %availableSkins = strreplace(%availableSkins, %other.skin, "");
+            %availableSkins = strreplace(%availableSkins, "\t\t", "");// remove empty fields
+         }
+      }
 
-        // Choose a random, unique skin for this client
-        %count = getFieldCount(%availableSkins);
-        %client.skin = addTaggedString( getField(%availableSkins, getRandom(%count)) );
-    }
-    %client.player.setSkinName(%client.skin);
+      // Choose a random, unique skin for this client
+      %count = getFieldCount(%availableSkins);
+      %client.skin = addTaggedString( getField(%availableSkins, getRandom(%count)) );
+   }
+   %client.player.setSkinName(%client.skin);
 
-    %client.getEventManager().postEvent("postSpawnComplete",%client);
+   %client.getEventManager().postEvent("postSpawnComplete",%client);
 }
