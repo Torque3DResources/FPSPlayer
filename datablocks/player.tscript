@@ -502,11 +502,13 @@ datablock PlayerData(DefaultPlayerData)
 
    debrisShapeAsset = "FPSPlayer:debris_player";
    debris = playerDebris;
-   
+
    throwForce = 30;
 
-   minLookAngle = "-1.4";
-   maxLookAngle = "0.9";
+   minLookAngle = "-1.4"; // ~80 Degrees
+   maxLookAngle = "0.9"; // ~52 Degrees
+   minProneLookAngle = "-0.7"; // ~40 Degrees
+   maxProneLookAngle = "0.7";
    maxFreelookAngle = 3.0;
 
    mass = 120;
@@ -570,12 +572,12 @@ datablock PlayerData(DefaultPlayerData)
    pickupRadius = 1;
 
    // Damage location details
-   boxHeadPercentage       = 0.83;
+   boxHeadPercentage       = 0.8;
    boxTorsoPercentage      = 0.49;
-   boxHeadLeftPercentage         = 0.30;
-   boxHeadRightPercentage        = 0.60;
-   boxHeadBackPercentage         = 0.30;
-   boxHeadFrontPercentage        = 0.60;
+   boxTorsoLeftPercentage         = -0.17;
+   boxTorsoRightPercentage        = 0.17;
+   boxTorsoBackPercentage         = -0.17;
+   boxTorsoFrontPercentage        = 0.17;
 
    // Foot Prints
    decalOffset = 0.25;
@@ -626,6 +628,7 @@ datablock PlayerData(DefaultPlayerData)
    FootShallowSplashAsset     = "FPSPlayer:FootLightShallowSplashSound";
    FootWadingAsset      = "FPSPlayer:FootLightWadingSound";
    FootUnderWaterAsset  = "FPSPlayer:FootLightUnderwaterSound";
+   //CrawlAsset = "FPSPlayer:CrawlSound";
 
    //FootBubblesSound     = FootLightBubblesSound;
    //movingBubblesSound   = ArmorMoveBubblesSound;
@@ -656,7 +659,7 @@ datablock PlayerData(DefaultPlayerData)
    // Allowable Inventory Items
    mainWeapon = Ryder;
    hasInventory = true;
-   
+
    maxInv[Lurker] = 1;
    maxInv[LurkerClip] = 20;
 
