@@ -233,7 +233,7 @@ function PlayerData::damage(%this, %obj, %sourceObject, %position, %damage, %dam
       }
 
       if (%damageLoc $= "Torso") {
-         switch$(subDamageLoc) {
+         switch$(%subDamageLoc) {
             case "middle_middle": %damage *= 1.4;   // "Middle middle" sounds confusing but it is the case that occurs when shot in the back when prone
             case "middle_left": %damage *= 0.6;
             case "middle_right": %damage *= 0.6;
