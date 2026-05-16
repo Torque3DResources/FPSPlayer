@@ -255,8 +255,17 @@ function PlayerData::damage(%this, %obj, %sourceObject, %position, %damage, %dam
    if (isObject(%client))
    {
       // Determine damage direction
-      if (%damageType !$= "Suicide")
-         %obj.setDamageDirection(%sourceObject, %position);
+      if (%damageType !$= "Suicide"){
+         if (%obj.healthFromMount)
+         {
+            %rootObj = findRootObject(%obj);
+            %obj.setDamageDirection(%rootObj, %sourceObject, %position);
+         }
+         else
+         {
+            %obj.setDamageDirection(%obj, %sourceObject, %position);
+         }
+      }
 
       if (%obj.getState() $= "Dead")
       {
