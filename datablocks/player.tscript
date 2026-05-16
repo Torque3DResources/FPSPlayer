@@ -628,6 +628,7 @@ datablock PlayerData(DefaultPlayerData)
    FootShallowSplashAsset     = "FPSPlayer:FootLightShallowSplashSound";
    FootWadingAsset      = "FPSPlayer:FootLightWadingSound";
    FootUnderWaterAsset  = "FPSPlayer:FootLightUnderwaterSound";
+   //CrawlAsset = "FPSPlayer:CrawlSound";
 
    //FootBubblesSound     = FootLightBubblesSound;
    //movingBubblesSound   = ArmorMoveBubblesSound;
