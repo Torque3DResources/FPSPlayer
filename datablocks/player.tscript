@@ -574,9 +574,9 @@ datablock PlayerData(DefaultPlayerData)
    // Damage location details
    boxHeadPercentage       = 0.8;
    boxTorsoPercentage      = 0.49;
-   boxTorsoLeftPercentage         = -0.17;
+   boxTorsoLeftPercentage         = 0.17;
    boxTorsoRightPercentage        = 0.17;
-   boxTorsoBackPercentage         = -0.17;
+   boxTorsoBackPercentage         = 0.17;
    boxTorsoFrontPercentage        = 0.17;
 
    // Foot Prints
